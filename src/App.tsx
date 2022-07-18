@@ -1,23 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import RickMorty from './img/rick-morty.png';
 import './App.css';
+import Navigation from './components/Navigation';
+import Main from './components/Main'
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [services, setservices] = useState(null)
+
+  const reqApi = async ()=>{
+    const api = await fetch('https://rickandmortyapi.com/api/character')
+    const characterApi = await api.json();
+
+    setservices(characterApi.results)
+    
+  }
+
   return (
     <div className="App">
+      <main>
+      <Main></Main>
+      </main>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {services ? (
+        <Navigation services={services} setservices = {setservices}/>
+        ) : (
+          <>
+            <img src={RickMorty} alt="Rick & Morty" className='img-home'></img>
+            <button onClick={reqApi} className="btn-search">Iniciar App</button>
+          </>
+        )}
+
       </header>
     </div>
   );

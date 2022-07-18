@@ -1,3 +1,10 @@
+# Versions
+
+This project was generated with React TypeScript version 18.2.0.
+
+### `node: v16.0.0` 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
